@@ -91,8 +91,13 @@
 (use-package helm :ensure t :config (helm-mode))
 (use-package lsp-treemacs :ensure t)
 
-(add-hook 'cider-repl-mode-hook #'paredit-mode)
-(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+(defun lisp-hook ()
+  (paredit-mode)
+  (rainbow-delimiters-mode))
+
+(add-hook 'emacs-lisp-mode-hook 'lisp-hook)
+(add-hook 'clojure-mode-hook 'lisp-hook)
+(add-hook 'cider-repl-mode-hook 'lisp-hook)
 
 (advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
 
@@ -100,10 +105,36 @@
 
 (use-package treemacs-projectile :ensure t)
 (global-set-key (kbd "C-c t") 'treemacs)
+(defun move-to-treemacs ()
+  "If treemacs is open, move to treemacs window."
+  (interactive)
+  (let ((treemacs-windows (seq-filter
+                           (lambda (w)
+                             (string-prefix-p " *Treemacs-Scoped" (buffer-name (window-buffer w))))
+                           (window-list))))
+    (if treemacs-windows
+        (select-window (car treemacs-windows))
+      (message "Treemacs buffer not opened."))))
+(global-set-key (kbd "C-c f") 'move-to-treemacs)
+
 (global-set-key (kbd "<C-M-return>") 'projectile-run-shell)
 
 (use-package ripgrep :ensure t)
 (use-package magit :ensure t)
+
+(defun clear ()
+  "Clear all open buffers and windows."
+  (interactive)
+  (mapc 'kill-buffer (buffer-list))
+  (delete-other-windows))
+
+(defun resize ()
+  "Resize all of the windows equal."
+  (interactive)
+  (balance-windows))
+
+(use-package zenburn-theme :ensure t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -111,16 +142,19 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-enabled-themes '(zenburn))
  '(custom-safe-themes
    '("f079ef5189f9738cf5a2b4507bcaf83138ad22d9c9e32a537d61c9aae25502ef" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile)))
+   '(zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
+ '(rainbow-delimiters-max-face-count 3))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :foreground "red"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "firebrick3"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "RoyalBlue2"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow4")))))

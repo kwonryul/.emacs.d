@@ -1,0 +1,13 @@
+.cache
+auto-save-list
+eclipse.jdt.ls
+elpa
+snippets
+transient
+workspace
+.dap-breakpoints
+.emacs.desktop
+.emacs.desktop.lock
+.lsp-session-v1
+projectile-bookmarks.eld
+projectile.cache

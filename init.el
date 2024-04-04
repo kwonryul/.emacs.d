@@ -133,6 +133,21 @@
   (interactive)
   (balance-windows))
 
+(defun kwonryul-github ()
+  "Cat kwonryul-github token to emacs clipboard."
+  (interactive)
+  (let ((output (shell-command-to-string "cat ~/.emacs.d/tokens/kwonryul-github")))
+    (kill-new output)
+    (message "Copied token to clipboard")))
+
+(defun ssh-paper-auth ()
+  "Start new shell buffer and ssh connect to paper-auth."
+  (interactive)
+  (let ((shell-buffer (shell "*ssh paper-auth*")))
+    (with-current-buffer shell-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i pem/paper-company.pem ubuntu@43.200.64.248\n"))))
+
 (use-package zenburn-theme :ensure t)
 
 (custom-set-variables
@@ -154,6 +169,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono"))))
  '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :foreground "red"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "firebrick3"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "RoyalBlue2"))))

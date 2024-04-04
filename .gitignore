@@ -4,6 +4,7 @@ eclipse.jdt.ls
 elpa
 snippets
 transient
+url
 workspace
 .dap-breakpoints
 .emacs.desktop
@@ -11,3 +12,4 @@ workspace
 .lsp-session-v1
 projectile-bookmarks.eld
 projectile.cache
+tokens

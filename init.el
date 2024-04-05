@@ -4,6 +4,21 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(defvar my-ansi-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-ansi-term-shell)))
+(ad-activate 'ansi-term)
+
+(defun projectile-ansi-term ()
+  (interactive)
+  (let ((project-root (projectile-project-root)))
+    (if project-root
+        (let ((ansi-term-buffer (ansi-term "/bin/bash" (concat "ansi-term-" project-root))))
+          (comint-send-string ansi-term-buffer (concat "cd " project-root "\n")))
+      (message "Not in a projectile project. Aborting."))))
+
+(global-set-key (kbd "<C-M-return>") 'projectile-ansi-term)
+
 (setq scroll-conservatively 100)
 (setq ring-bell-function 'ignore)
 
@@ -117,8 +132,6 @@
       (message "Treemacs buffer not opened."))))
 (global-set-key (kbd "C-c f") 'move-to-treemacs)
 
-(global-set-key (kbd "<C-M-return>") 'projectile-run-shell)
-
 (use-package ripgrep :ensure t)
 (use-package magit :ensure t)
 
@@ -136,17 +149,26 @@
 (defun kwonryul-github ()
   "Cat kwonryul-github token to emacs clipboard."
   (interactive)
-  (let ((output (shell-command-to-string "cat ~/.emacs.d/tokens/kwonryul-github")))
+  (let ((output (shell-command-to-string "cat ~/tokens/kwonryul-github")))
     (kill-new output)
     (message "Copied token to clipboard")))
 
 (defun ssh-paper-auth ()
   "Start new shell buffer and ssh connect to paper-auth."
   (interactive)
-  (let ((shell-buffer (shell "*ssh paper-auth*")))
-    (with-current-buffer shell-buffer
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-paper-auth")))
+    (with-current-buffer ansi-term-buffer
       (comint-send-string (current-buffer) "cd ~\n")
-      (comint-send-string (current-buffer) "ssh -i pem/paper-company.pem ubuntu@43.200.64.248\n"))))
+      (comint-send-string (current-buffer) "ssh -i ~/pems/paper-company.pem ubuntu@43.200.64.248\n"))))
+
+(defun repl-paper-auth ()
+  "Start paper-auth cider repl server as daemon."
+  (interactive)
+  (let ((prev-buffer (current-buffer))
+        (ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
+    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")
+    (switch-to-buffer prev-buffer)))
 
 (use-package zenburn-theme :ensure t)
 

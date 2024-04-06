@@ -15,7 +15,8 @@
     (if project-root
         (let ((ansi-term-buffer (ansi-term "/bin/bash" (concat "ansi-term-" project-root))))
           (comint-send-string ansi-term-buffer (concat "cd " project-root "\n")))
-      (message "Not in a projectile project. Aborting."))))
+      (let ((ansi-term-buffer (ansi-term "/bin/bash" "ansi-term-home")))
+        (comint-send-string ansi-term-buffer "cd ~\n")))))
 
 (global-set-key (kbd "<C-M-return>") 'projectile-ansi-term)
 

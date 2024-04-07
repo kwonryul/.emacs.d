@@ -186,14 +186,19 @@
  '(ispell-dictionary nil)
  '(package-selected-packages
    '(zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
- '(rainbow-delimiters-max-face-count 3))
+ '(rainbow-delimiters-max-face-count 8))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono"))))
- '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :foreground "red"))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "firebrick3"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "RoyalBlue2"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "yellow4")))))
+ '(rainbow-delimiters-base-error-face ((t (:inherit rainbow-delimiters-base-face :foreground "black"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "gray75"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "firebrick3"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "RoyalBlue2"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "yellow4"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "gray75"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "purple2"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "cyan3"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "chartreuse4")))))

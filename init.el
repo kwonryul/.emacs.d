@@ -136,6 +136,8 @@
 (use-package ripgrep :ensure t)
 (use-package magit :ensure t)
 
+(global-set-key (kbd "C-S-f") 'projectile-ripgrep)
+
 (defun clear ()
   "Clear all open buffers and windows."
   (interactive)

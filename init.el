@@ -138,6 +138,33 @@
 
 (global-set-key (kbd "C-S-f") 'projectile-ripgrep)
 
+(defun org-mode-setup ()
+  (org-indent-mode))
+
+(defun org-font-setup ()
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))))
+
+(use-package org
+  :ensure t
+  :hook (org-mode . org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾"
+        org-hide-emphasis-markers t)
+  (org-font-setup))
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("●" "○" "●" "○" "●" "○" "●")))
+
 (defun clear ()
   "Clear all open buffers and windows."
   (interactive)

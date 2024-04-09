@@ -1,0 +1,24 @@
+* Daily
+** CodeWars
+*** Clojure
+- [ ]
+- [ ]
+*** Java
+- [ ]
+** Kit
+- [ ] HTML Templating
+- [ ] Static Assets
+
+* Weekly
+** Emacs Settings: Python3
+- [ ] lsp
+- [ ] dap
+- [ ] repl
+** Kit
+- [ ] ClojureScript
+- [ ] Routing
+- [ ] Websockets
+- [ ] Requests & Responses
+- [ ] Middleware
+- [ ] Sessions
+** Selmer

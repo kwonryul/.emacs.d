@@ -1,0 +1,26 @@
+* 04
+** TODO Clojure Web Development
+- [ ] Kit
+- [ ] HugSQL
+- [ ] Selmer
+** TODO Paper-Auth
+** TODO Emacs Settings
+- [ ] Java
+- [ ] Python3
+* 05
+** TODO Computer Networking
+** TODO Paper-Auth
+* 06
+** TODO Joy of Clojure
+* 07
+** TODO SICP
+* 08
+** TODO CLRS
+* 09
+** TODO CLRS
+* 10
+** TODO Optimizing Java
+* 11
+** TODO Mastering Clojure
+* 12
+** TODO Docker

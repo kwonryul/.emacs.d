@@ -1,0 +1,24 @@
+* Daily
+** TODO 
+*** TODO CodeWars
+**** TODO Clojure
+- [ ]
+- [ ]
+**** TODO Python
+- [ ]
+*** TODO Kit
+- [ ] ClojureScript
+- [ ] Routing
+*** TODO Emacs Settings: Python3
+- [ ] lsp
+- [ ] dap
+- [ ] repl
+* Tasks
+** Kit
+- [ ] Websockets
+- [ ] Requests & Responses
+- [ ] Middleware
+- [ ] Sessions
+- [ ] Database Access
+- [ ] Caching
+** HugSQL

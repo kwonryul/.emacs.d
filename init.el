@@ -160,6 +160,7 @@
   (org-font-setup))
 
 (use-package org-bullets
+  :ensure t
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
@@ -194,11 +195,9 @@
 (defun repl-paper-auth ()
   "Start paper-auth cider repl server as daemon."
   (interactive)
-  (let ((prev-buffer (current-buffer))
-        (ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth")))
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth")))
     (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
-    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")
-    (switch-to-buffer prev-buffer)))
+    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
 
 (use-package zenburn-theme :ensure t)
 

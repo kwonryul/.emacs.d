@@ -67,6 +67,10 @@
          (window-width . 75))
          (".*"
           (display-buffer-same-window))))
+(defadvice pop-to-buffer (before cancel-other-window first)
+  (ad-set-arg 1 nil))
+(ad-activate 'pop-to-buffer)
+(setq pop-up-windows nil)
 
 (defun my-helm-display-buffer (buffer &optional resume)
   "Display helm buffer without modifying window configuration."
@@ -114,6 +118,9 @@
 (add-hook 'emacs-lisp-mode-hook 'lisp-hook)
 (add-hook 'clojure-mode-hook 'lisp-hook)
 (add-hook 'cider-repl-mode-hook 'lisp-hook)
+
+(use-package elpy :ensure t :defer t :init) (advice-add 'python-mode :before 'elpy-enable)
+(setq-default python-indent-offset 4)
 
 (advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
 
@@ -193,11 +200,18 @@
       (comint-send-string (current-buffer) "ssh -i ~/pems/paper-company.pem ubuntu@43.200.64.248\n"))))
 
 (defun repl-paper-auth ()
-  "Start paper-auth cider repl server as daemon."
+  "Start paper-auth cider repl server."
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth")))
     (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
     (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
+
+(defun repl-paper-auth-cljs ()
+  "Start paper-auth cljs cider repl server."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
+    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
 
 (use-package zenburn-theme :ensure t)
 
@@ -213,7 +227,7 @@
    '("f079ef5189f9738cf5a2b4507bcaf83138ad22d9c9e32a537d61c9aae25502ef" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
+   '(elpy zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
  '(rainbow-delimiters-max-face-count 8))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

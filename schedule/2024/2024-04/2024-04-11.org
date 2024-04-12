@@ -1,5 +1,5 @@
 * Daily
-** DONE 
+** DONE
 *** DONE CodeWars
 **** DONE Clojure
 - [X]
@@ -9,7 +9,7 @@
 *** DONE Kit
 - [X] ClojureScript
 - [X] Routing
-*** DONE Emacs Settings: Python3
+*** DONE Emacs Settings: Python
 - [X] lsp
 - [X] dap
 - [X] repl
@@ -23,6 +23,7 @@
 - [ ] Caching
 ** ClojureScript
 - [ ] Client-side Route - 히스토리 훅??
-- [ ] Ajax - CORS 요청을 보내는게 가능한지
+- [ ] Ajax - CORS 요청을 보내는게 가능한지 / sente ajax와의 비교 / 서버-서버 가능한지
 ** Buddy - JWT와 함께 사용이 가능한지
+** WebSocket - CORS 요청을 보내는게 가능한지 / CORS 요청을 받는게 가능한지
 ** HugSQL

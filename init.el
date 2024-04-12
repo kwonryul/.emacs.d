@@ -211,7 +211,7 @@
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth-cljs")))
     (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
-    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
+    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app ws\n")))
 
 (use-package zenburn-theme :ensure t)
 

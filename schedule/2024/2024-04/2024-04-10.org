@@ -14,7 +14,7 @@
 *** DONE Emacs Settings: Java
 * Tasks
 ** Emacs Settings
-*** Python3
+*** Python
 - [ ] lsp
 - [ ] dap
 - [ ] repl

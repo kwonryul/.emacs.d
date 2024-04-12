@@ -1,23 +1,31 @@
 * Daily
-** TODO
-*** TODO CodeWars
-**** TODO Clojure
-- [ ]
-**** TODO Java
-- [ ]
-**** TODO Python
-- [ ]
-*** TODO Kit
-- [ ] Websockets
-- [ ] Requests & Responses
-- [ ] Middleware
-- [ ] Sessions
-*** TODO ClojureScript Setting
-- [ ] (shadow.cljs.devtools.api/repl :app)
-- [ ] name space
-- [ ] target dir & build dir
+** DONE 
+*** DONE CodeWars
+**** DONE Clojure
+- [X]
+**** DONE Java
+- [X]
+**** DONE Python
+- [X]
+*** DONE Kit
+- [X] Websockets
+- [X] Requests & Responses
+*** DONE ClojureScript Setting
+- [X] (shadow.cljs.devtools.api/repl :app) - cider에서 repl을 켤 때의 설정으로 통합 가능
+- [X] name space - 포기
+- [X] target dir & build dir
+*** DONE ClojureScript
+**** Ajax
+- [X] CORS 요청을 보내는게 가능한지 - 가능하다
+- [X] sente ajax 와의 비교 - sente 의 ajax는 양방향 용도이며 커넥션이 계속 유지되는 채널이라 단발성 요청이 아니다
+- [X] 서버 - 서버 가능한지 - clj cljs 모두 지원한다
+*** DONE WebSocket
+- [X] CORS 요청을 보내는게 가능한지 - 가능. 하지만, sente의 규약을 따르지 않는 백엔드의 경우 통신이 불가능
+- [X] CORS 요청을 받는게 가능한지 - 가능 Allowed Origin 설정이 있음. 단, 인증을 실제로 뚫어보진 못했음. 서버측은 규약을 강제할 수 있으므로 문제되지 않음.
 * Tasks
 ** Kit
+- [ ] Middleware
+- [ ] Sessions
 - [ ] Database Access
 - [ ] Caching
 - [ ] Scheduling
@@ -26,6 +34,5 @@
 - [ ] Server Tuning
 ** ClojureScript
 - [ ] Client-side Route - 히스토리 훅??
-- [ ] Ajax - CORS 요청을 보내는게 가능한지
 ** Buddy - JWT와 함께 사용이 가능한지
 ** HugSQL

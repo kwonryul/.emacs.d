@@ -1,0 +1,35 @@
+* Daily
+** TODO
+*** TODO CodeWars
+**** TODO Clojure
+- [ ]
+- [ ]
+**** TODO Java
+- [ ]
+**** TODO Python
+- [ ]
+*** TODO Kit
+- [ ] Middleware
+- [ ] Sessions
+- [ ] Database Access
+*** TODO HugSQL
+*** TODO ClojureScript
+- [ ] Client-side Route
+- [ ] History hook
+*** TODO Buddy
+- [ ] Buddy 문서 살펴보기
+- [ ] JWT와 함께 이용이 가능한지 살펴보기
+* Tasks
+** Kit
+- [ ] Caching
+- [ ] Scheduling
+- [ ] Logging
+- [ ] Testing
+- [ ] Server Tuning
+- [ ] Environment Variables
+- [ ] Deployment
+- [ ] Useful Libraries
+- [ ] Sample Applications
+- [ ] Upgrading
+- [ ] Editor Configuration
+- [ ] Clojure Resources

@@ -1,24 +1,23 @@
 * Daily
 ** TODO
-*** TODO CodeWars
-**** TODO Clojure
-- [ ]
-- [ ]
-**** TODO Java
-- [ ]
-**** TODO Python
-- [ ]
-*** TODO Kit
-- [ ] Middleware
-- [ ] Sessions
-- [ ] Database Access
-*** TODO HugSQL
-*** TODO ClojureScript
-- [ ] Client-side Route
-- [ ] History hook
-*** TODO Buddy
-- [ ] Buddy 문서 살펴보기
-- [ ] JWT와 함께 이용이 가능한지 살펴보기
+*** DONE CodeWars
+**** DONE Clojure
+- [X]
+**** DONE Java
+- [X]
+**** DONE Python
+- [X]
+*** DONE Kit
+- [X] Middleware
+- [X] Sessions
+- [X] Database Access
+*** TODO HugSQL - 일단 실제 상황을 통해 배워나가고 나중에 정리하기로 미루었음
+*** DONE ClojureScript
+- [X] Client-side Route - goog event를 대신 발생시키는 것
+- [X] History hook - history hook은 히스토리를 제공하기 위함이지, 브라우저의 history를 조작하는게 아님
+*** DONE Buddy
+- [X] Buddy 문서 살펴보기
+- [X] JWT와 함께 이용이 가능한지 살펴보기 - 가능. session backend가 아니라 jws backend를 사용하면 됨
 * Tasks
 ** Kit
 - [ ] Caching
@@ -33,3 +32,9 @@
 - [ ] Upgrading
 - [ ] Editor Configuration
 - [ ] Clojure Resources
+** DONE Buddy - rules 설정에 있어서 uri 를 matching 할 때에, :match-params 를 살펴보기 - 당연한거 같아서 할일 목록에서 제거
+** XTDB
+** Emacs Settings
+- [ ] HTML
+- [ ] CSS
+- [ ] Javascript

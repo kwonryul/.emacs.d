@@ -1,15 +1,15 @@
 * 04
 ** TODO Clojure Web Development
-- [ ] Kit
+- [X] Kit
 - [ ] HugSQL
-- [ ] Selmer
-** TODO Paper-Auth
+- [X] Selmer
 ** TODO Emacs Settings
+- [X] Clojure
+- [X] Python
 - [ ] Java
-- [ ] Python3
+- [ ] Html/CSS/Javascript
 * 05
 ** TODO Computer Networking
-** TODO Paper-Auth
 * 06
 ** TODO Joy of Clojure
 * 07

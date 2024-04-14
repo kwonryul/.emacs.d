@@ -1,0 +1,39 @@
+* Daily
+** DONE 
+*** DONE CodeWars
+**** DONE Clojure
+- [X]
+**** DONE Java
+- [X]
+**** DONE Python
+- [X]
+*** DONE Kit
+- [X] Caching
+- [X] Scheduling - MongoDB 연결은 나중으로 미루었다
+- [X] Logging
+- [X] Testing
+- [X] Server Tuning
+- [X] Environment Variables
+* Tasks
+** Kit
+- [ ] Deployment
+- [ ] Useful Libraries
+- [ ] Sample Applications
+- [ ] Upgrading
+- [ ] Editor Configuration
+- [ ] Clojure Resources
+** HugSQL
+** XTDB
+** DONE Logback - 필수적인것은 들여다 봤음. 자세한 세팅은 필요할때 찾아보기
+** Emacs Settings
+- [ ] HTML
+- [ ] CSS
+- [ ] Javascript
+* Notice
+- Test 는 middleware 설정이 안되어있음을 숙지
+- undertow-adapter 라는 레이어의 숙지 - worker thread 와 io thread 의 개별적인 설정이 가능
+- request 에서 :dispatch? flag 를 통해 IO thread 에 직접 요청을 보낼 수 있다는 점을 숙지.
+- test 쪽의 env가 따로 없기 때문에, 또한 dev 프로파일에서 직접 test를 실행하기 때문에
+  test는 dev쪽의 env를 결국 사용하게 된다.
+  그러면서도 prep 의 config는 test 프로파일을 사용하므로 dev와 공유하면서도 격리된 특수성.
+  지금 단적으로 기억해야할 사실은, test의 middleware 설정이 dev쪽의 wrap-dev를 사용한다는 점.

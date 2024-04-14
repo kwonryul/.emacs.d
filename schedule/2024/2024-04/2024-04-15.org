@@ -1,0 +1,39 @@
+* Daily
+** TODO
+*** TODO CodeWars
+**** TODO Clojure
+- [ ]
+**** TODO Java
+- [ ]
+**** TODO Python
+- [ ]
+*** TODO Kit
+- [ ] Deployment
+- [ ] Useful Libraries
+- [ ] Sample Applications
+- [ ] Upgrading
+- [ ] Editor Configuration
+- [ ] Clojure Resources
+** NewRuns
+*** TRPG
+- [ ] Kit - repl / http / profile
+- [ ] Kit - cljs
+- [ ] Kit - selmer
+- [ ] Kit - sql
+- [ ] Kit - sente
+- [ ] AWS
+*** Intern Care
+- [ ] Greeting!
+- [ ] Evaluate Proficiency
+* Tasks
+** HugSQL
+** XTDB
+** Emacs Settings
+- [ ] HTML
+- [ ] CSS
+- [ ] Javascript
+- [ ] Java - linter
+- [ ] move buffer to eof
+** Clojure - Java interop / deftype defrecord defprotocol
+** Computer Networking
+- [ ] Chapter 02

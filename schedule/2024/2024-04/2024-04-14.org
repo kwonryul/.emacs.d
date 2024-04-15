@@ -29,7 +29,7 @@
 - [ ] HTML
 - [ ] CSS
 - [ ] Javascript
-* Notice
+* Notices
 - Test 는 middleware 설정이 안되어있음을 숙지
 - undertow-adapter 라는 레이어의 숙지 - worker thread 와 io thread 의 개별적인 설정이 가능
 - request 에서 :dispatch? flag 를 통해 IO thread 에 직접 요청을 보낼 수 있다는 점을 숙지.

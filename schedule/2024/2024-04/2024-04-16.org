@@ -1,0 +1,32 @@
+* Daily
+** TODO
+*** TODO CodeWars
+**** TODO Clojure
+- [ ]
+**** TODO Java
+- [ ]
+**** TODO Python
+- [ ]
+** TODO NewRuns
+*** TODO TRPG
+- [ ] Buddy - JWT
+*** TODO Intern Care
+- [ ] Spring - http
+- [ ] Spring - thymeleaf
+- [ ] Spring - jpa
+- [ ] AWS
+* Tasks
+** HugSql
+** XTDB
+** Emacs Settings
+- [ ] HTML
+- [ ] CSS
+- [ ] Javascript
+- [ ] Java - linter
+- [ ] move buffer to eof
+** Clojure - Java interop / deftype defrecord defprotocol
+** Computer Networking
+- [ ] Chapter 02
+** 포트포워딩
+** HTTPS
+** antq - (library version checker)

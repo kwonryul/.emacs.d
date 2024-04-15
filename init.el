@@ -191,27 +191,35 @@
     (kill-new output)
     (message "Copied token to clipboard")))
 
-(defun ssh-paper-auth ()
-  "Start new shell buffer and ssh connect to paper-auth."
+(defun ssh-pf-trpg ()
+  "Start new shell buffer and ssh connect to pf-trpg."
   (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-paper-auth")))
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-pf-trpg")))
     (with-current-buffer ansi-term-buffer
       (comint-send-string (current-buffer) "cd ~\n")
-      (comint-send-string (current-buffer) "ssh -i ~/pems/paper-company.pem ubuntu@43.200.64.248\n"))))
+      (comint-send-string (current-buffer) "ssh -i ~/pems/nwrn.pem ubuntu@43.201.216.183\n"))))
 
-(defun repl-paper-auth ()
-  "Start paper-auth cider repl server."
+(defun ssh-pf-contest ()
+  "Start new shell buffer and ssh connect to pf-contest."
   (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth")))
-    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-pf-contest")))
+    (with-current-buffer ansi-term-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i ~/pems/nwrn.pem ubuntu@43.201.201.45\n"))))
+
+(defun repl-pf-trpg ()
+  "Start pf-trpg cider repl server."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-pf-trpg")))
+    (comint-send-string ansi-term-buffer "cd ~/nwrn/pf-trpg\n")
     (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
 
-(defun repl-paper-auth-cljs ()
-  "Start paper-auth cljs cider repl server."
+(defun repl-pf-trpg-cljs ()
+  "Start pf-trpg cljs cider repl server."
   (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-paper-auth-cljs")))
-    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/paper-auth\n")
-    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app ws\n")))
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-pf-trpg-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/nwrn/pf-trpg\n")
+    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
 
 (use-package zenburn-theme :ensure t)
 

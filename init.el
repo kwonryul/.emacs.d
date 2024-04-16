@@ -91,7 +91,9 @@
         "-javaagent:/home/kwonryul/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/a2ff5da8bcd8b1b26f36b806ced63213362c6dcc/lombok-1.18.28.jar"))
 
 (add-hook 'java-mode-hook
-	  (setq c-basic-offset 4))
+          (lambda ()
+            (setq c-basic-offset 4)
+            (local-set-key (kbd "<M-return>") 'lsp-execute-code-action)))
 
 (use-package projectile :ensure t :init (projectile-mode +1))
 (use-package flycheck :ensure t)
@@ -110,6 +112,12 @@
 (use-package helm-lsp :ensure t)
 (use-package helm :ensure t :config (helm-mode))
 (use-package lsp-treemacs :ensure t)
+
+(setq lsp-java-configuration-runtimes '[(:name "JavaSE-11"
+                                               :path "/usr/lib/jvm/java-11-openjdk-amd64/")
+                                        (:name "JavaSE-17"
+                                               :path "/usr/lib/jvm/java-17-openjdk-amd64/"
+                                               :default t)])
 
 (defun lisp-hook ()
   (paredit-mode)

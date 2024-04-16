@@ -1,0 +1,32 @@
+* Daily
+** TODO
+*** TODO CodeWars
+**** TODO Java
+- [ ]
+**** TODO Python
+- [ ]
+**** TODO Haskell
+- [ ]
+*** TODO Emacs Settings
+- [ ] HTML
+- [ ] CSS
+- [ ] Javascript
+- [ ] Haskell
+*** TODO NewRuns
+**** TODO TRPG
+- [ ] User Enroll
+- [ ] Login (JWT issue)
+**** TODO Intern Care
+- [ ] User Enroll
+- [ ] User Login
+* Tasks
+** HugSql
+** XTDB
+** Emacs Settings
+- [ ] Java - linter
+- [ ] move buffer to eof
+- [ ] C
+** Clojure - Java interop / deftype defrecord defprotocol
+** HTTPS - keytool keystore
+** antq - (library version checker)
+** Reitit handler 에서 request respond raise 세가지를 받는 경우

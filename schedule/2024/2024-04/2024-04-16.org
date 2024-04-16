@@ -1,20 +1,20 @@
 * Daily
-** TODO
-*** TODO CodeWars
-**** TODO Clojure
-- [ ]
-**** TODO Java
-- [ ]
-**** TODO Python
-- [ ]
-** TODO NewRuns
-*** TODO TRPG
-- [ ] Buddy - JWT
-*** TODO Intern Care
-- [ ] Spring - http
-- [ ] Spring - thymeleaf
-- [ ] Spring - jpa
-- [ ] AWS
+** DONE 
+*** DONE CodeWars
+**** DONE Clojure
+- [X]
+**** DONE Java
+- [X]
+**** DONE Python
+- [X]
+** DONE NewRuns
+*** DONE TRPG
+- [X] Buddy - JWT
+*** DONE Intern Care
+- [X] Spring - http
+- [X] Spring - thymeleaf
+- [X] Spring - jpa
+- [X] AWS
 * Tasks
 ** HugSql
 ** XTDB
@@ -25,8 +25,9 @@
 - [ ] Java - linter
 - [ ] move buffer to eof
 ** Clojure - Java interop / deftype defrecord defprotocol
-** Computer Networking
+** Computer Networking - 5월부터 시작하기로 결정
 - [ ] Chapter 02
-** 포트포워딩
-** HTTPS
+** DONE 포트포워딩 - nginx로 대체 (nginx는 나중으로 미룸)
+** HTTPS - keytool keystore
 ** antq - (library version checker)
+** Reitit handler 에서 request respond raise 세가지를 받는 경우

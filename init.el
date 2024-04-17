@@ -127,6 +127,8 @@
 (add-hook 'clojure-mode-hook 'lisp-hook)
 (add-hook 'cider-repl-mode-hook 'lisp-hook)
 
+(use-package haskell-mode :ensure t)
+
 (use-package elpy :ensure t :defer t :init) (advice-add 'python-mode :before 'elpy-enable)
 (setq-default python-indent-offset 4)
 
@@ -243,7 +245,7 @@
    '("f079ef5189f9738cf5a2b4507bcaf83138ad22d9c9e32a537d61c9aae25502ef" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(elpy zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
+   '(haskell-mode elpy zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
  '(rainbow-delimiters-max-face-count 8))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

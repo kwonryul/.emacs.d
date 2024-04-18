@@ -1,25 +1,16 @@
 * Daily
 ** TODO
-*** TODO CodeWars
-**** TODO Python
-- [ ]
-**** TODO Haskell
-- [ ]
 *** DONE NewRuns
 **** DONE TRPG
-- [X] User Login / JWT issue
-- [X] Token Refresh
-**** DONE Intern Care
-- [X] Login page
-- [X] route
-** Extra
-*** TRPG
-- [X] token SQL
-- [X] roles SQL
-- [X] token validation
+- [ ] transaction
+- [ ] enroll page
+- [ ] sign - out
+- [ ] invalidate
+- [ ] unique insert exception handling
 * Tasks
 ** TRPG
-- [ ] transaction
+- [ ] phone verification
+- [ ] lock table for error count
 ** HugSql
 ** XTDB
 ** Emacs Settings

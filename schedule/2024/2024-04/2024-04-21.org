@@ -1,0 +1,20 @@
+* Daily
+** TODO
+*** TODO NewRuns
+**** TODO TRPG
+- [ ] Role Exclusion
+- [ ] Image
+- [ ] Video
+- [ ] Music
+* Tasks
+** TRPG
+- [ ] mobile view
+- [ ] web view
+** HugSql
+** XTDB
+** Emacs Settings
+- [ ] C
+- [ ] move buffer to eof
+** Clojure - deftype defrecord defprotocol
+** HTTPS - keytoll keystore
+** Reitit handler 에서 request respond raise 세가지를 받는 경우

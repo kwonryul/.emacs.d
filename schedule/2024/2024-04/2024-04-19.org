@@ -1,9 +1,10 @@
 * Daily
 ** TODO
-*** DONE NewRuns
+*** TODO NewRuns
 **** DONE TRPG
-- [ ] transaction
-- [ ] enroll page
+- [X] transaction
+- [X] enroll page
+- [ ] enroll
 - [ ] sign - out
 - [ ] invalidate
 - [ ] unique insert exception handling

@@ -1,0 +1,24 @@
+* Daily
+** TODO
+*** TODO NewRuns
+**** TODO TRPG
+- [ ] Join Room
+- [ ] NickName
+- [ ] Save uid for recognize my message
+- [ ] good design for Play
+* Tasks
+** TRPG
+- [ ] mobile view - 안하기로 함
+- [ ] web view - 딱히 손보지 않음
+- [ ] cursor delete - 딱히 손보지 않음
+- [ ] enroll 오류표시 더 티 나게
+- [ ] login 오류시 알림창 띄우기
+- [ ] CORS!
+** HugSql
+** XTDB
+p** Emacs Settings
+- [ ] C
+- [ ] move buffer to eof
+** Clojure - deftype defrecord defprotocol
+** HTTPS - keytoll keystore
+** Reitit handler 에서 request respond raise 세가지를 받는 경우

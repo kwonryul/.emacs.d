@@ -2,18 +2,16 @@
 ** TODO
 *** TODO NewRuns
 **** TODO TRPG
-- [X] Role Exclusion
-- [X] DOM Template
-- [X] Image
 - [ ] Video
-- [X] Music
+- [ ] password hash
+- [X] invalidate -> need user_id
+* Extra
+** CRITICAL SPA CHANGE
 * Tasks
 ** TRPG
 - [ ] mobile view
 - [ ] web view
 - [ ] cursor delete
-- [ ] password hash
-- [ ] invalidate -> need user_id
 ** HugSql
 ** XTDB
 ** Emacs Settings

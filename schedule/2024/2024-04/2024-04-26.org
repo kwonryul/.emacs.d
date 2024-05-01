@@ -1,13 +1,11 @@
 * Daily
-** TODO
-*** TODO NewRuns
-**** TODO TRPG
-- [X] Join Room
-- [ ] NickName
-- [ ] Save uid for recognize my message
-- [ ] good design for Play
-- [X] 현재 커넥션이 계속 늘어나고 있음. 그리고 방에 대한 중복제거 해야함.
-- [X] logout -> session disconnect
+** DONE 
+*** DONE NewRuns
+**** DONE TRPG
+- [X] Nickname
+- [X] Scroll to End
+- [X] Log out / Login -> Session Out
+- [X] good Design for Play
 * Tasks
 ** TRPG
 - [ ] mobile view - 안하기로 함
@@ -18,9 +16,9 @@
 - [ ] CORS!
 ** HugSql
 ** XTDB
-p** Emacs Settings
+** Emacs Settings
 - [ ] C
 - [ ] move buffer to eof
 ** Clojure - deftype defrecord defprotocol
-** HTTPS - keytoll keystore
+** HTTPS - keytool keystore
 ** Reitit handler 에서 request respond raise 세가지를 받는 경우

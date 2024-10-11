@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: org-sql-snippet
+# key: oss
+# --
+#+NAME: ${1:snippet_name}
+#+BEGIN_SRC sql :exports both
+
+#+END_SRC
+#+RESULTS: $1

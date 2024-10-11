@@ -1,11 +1,9 @@
 * Daily
 ** DONE 
-*** DONE Computer Networking
-- [X] 2.3 인터넷 전자메일
-- [X] 2.4 DNS
-*** TODO NewRuns
-**** TODO TRPG
-- [ ] 게임방과 채팅방 분할
+*** DONE NewRuns
+**** DONE TRPG
+- [X] S3 이미지 등록
+- [X] 파이썬 서버에 접속해보기
 * Tasks
 ** TRPG
 - [ ] 프로필 사진 등록

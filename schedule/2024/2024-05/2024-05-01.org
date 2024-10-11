@@ -1,8 +1,8 @@
 * Daily
-** TODO
-*** TODO Computer Networking
-- [ ] 2.1 네트워크 애플리케이션의 원리
-- [ ] 2.2 웹과 HTTP
+** DONE 
+*** DONE Computer Networking
+- [X] 2.1 네트워크 애플리케이션의 원리
+- [X] 2.2 웹과 HTTP
 * Tasks
 ** TRPG
 - [ ] 프로필 사진 등록

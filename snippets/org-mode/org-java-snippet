@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: org-java-snippet
+# key: ojs
+# --
+#+NAME: ${1:snippet_name}
+#+BEGIN_SRC java :classname ${2:classname} :results ${3:results} :exports ${4:exports}
+  public class $2 {
+      public static void main(String[] args) {
+      }
+  }
+#+END_SRC
+#+RESULTS: $1
+
+#+NAME: $1_cleanup
+#+BEGIN_SRC shell :results none :exports none
+  rm $2.java
+  rm $2.class
+#+END_SRC

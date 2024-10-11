@@ -1,0 +1,18 @@
+* Daily
+** DONE
+*** DONE InvestWith
+**** DONE ibs-py
+- [X] python 3 세팅
+- [X] git 프로젝트 생성
+***** DONE fast-api 공식문서
+- [X] fast-api 첫걸음
+- [X] fast-api 경로 매개변수
+- [X] fast-api 쿼리 매개변수
+- [X] fast-api 요청 본문
+- [X] 쿼리 매개변수와 문자열 검증
+- [X] 경로 매개변수와 숫자 검증
+* Tasks
+** InvestWith
+*** ibs-be
+- [ ] Box 와 ModelBox 타입 숙지
+*** ibs-py

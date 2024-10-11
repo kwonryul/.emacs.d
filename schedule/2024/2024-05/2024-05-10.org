@@ -1,11 +1,11 @@
 * Daily
-** DONE 
-*** DONE Computer Networking
-- [X] 2.3 인터넷 전자메일
-- [X] 2.4 DNS
+** TODO
 *** TODO NewRuns
 **** TODO TRPG
-- [ ] 게임방과 채팅방 분할
+- [X] 턴 종료
+- [X] 타이머에의한 턴 종료
+- [X] 프론트엔드 타이머
+- [ ] Manager가 연산중일 때에 ...
 * Tasks
 ** TRPG
 - [ ] 프로필 사진 등록

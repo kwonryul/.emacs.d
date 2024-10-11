@@ -1,0 +1,22 @@
+0. Settings 에서 기본 설정
+
+독, 기본 키바인딩 등을 손볼 수 있다
+
+1. 한글설정
+
+- settings 의 language support 에서 Korean 다운로드
+- sudo apt upgrade ibus-hangul
+- ibus-setup 에서 install Korean(한글)
+- settings 의 키보드 - input source 에서 Korean(한글) 설정
+- preference 에서 한영변환 설정
+
+2. dconf-editor 설정
+
+- sudo apt install dconf-editor
+- org/gnome/shell/keybindings
+- org/gnome/desktop/wm/keybindings
+- org/gnome/shell/extensions/dash-to-dock
+- dash-to-dock 에서 Super-Q 도 끄는거 잊지 않기
+- org/gnome/desktop/input-sources
+
+3. 한자키 / 컨트롤 캡스락 전환

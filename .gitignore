@@ -3,7 +3,6 @@ auto-save-list
 eclipse.jdt.ls
 elpa
 elpy
-snippets
 transient
 url
 workspace
@@ -11,6 +10,7 @@ workspace
 .emacs.desktop
 .emacs.desktop.lock
 .lsp-session-v1
+.org-id-locations
 projectile-bookmarks.eld
 projectile.cache
 session*

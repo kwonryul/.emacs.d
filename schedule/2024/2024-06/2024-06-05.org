@@ -1,19 +1,15 @@
 * Daily
-** DONE 
-*** DONE Computer Networking
-- [X] 2.3 인터넷 전자메일
-- [X] 2.4 DNS
+** TODO
 *** TODO NewRuns
 **** TODO TRPG
-- [ ] 게임방과 채팅방 분할
+- [ ] 방 다섯개로 제한
+*** DONE Network
+- [ ] 2장 Problems
 * Tasks
 ** TRPG
-- [ ] 프로필 사진 등록
 - [ ] enroll 오류표시 더 티 나게
 - [ ] login 오류시 알림창 띄우기
-- [ ] CORS
 - [ ] 입장시 이벤트 지연시키기 - 이벤트 로그
-- [ ] disconnect하고 다시 접속하는 부분이 상당히 위험하게 설계되어있음
 ** HugSql
 ** XTDB
 ** Emacs Settings

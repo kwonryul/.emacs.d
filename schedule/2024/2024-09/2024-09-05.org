@@ -1,0 +1,16 @@
+* Daily
+** DONE
+*** DONE InvestWith
+**** DONE ibs-be
+- [X] java 21 세팅
+- [X] git clone 진행 후 .war 실행
+**** DONE ibs-py
+- [X] aws 세팅
+* Tasks
+** InvestWith
+*** ibs-be
+- [ ] Box 와 ModelBox 타입 숙지
+*** ibs-py
+- [ ] python 3 세팅
+- [ ] git 프로젝트 생성
+- [ ] fast api / test api 작성

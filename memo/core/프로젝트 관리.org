@@ -1,0 +1,8 @@
+* lsp에서 프로젝트 관리
+lsp-workspace-folders-add
+lsp-workspace-folders-remove
+* projectile에서 프로젝트 관리
+projectile-add-known-project
+projectile-remove-known-project
+* yasnippet관리
+yas-reload-all (snippets directory만 잘 관리하면 ok)

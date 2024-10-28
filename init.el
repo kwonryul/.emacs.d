@@ -51,7 +51,7 @@
 (setq mouse-wheel-flip-direction t)
 
 (setq-default truncate-lines t)
-(setq truncate-partial-width-windos nil)
+(setq truncate-partial-width-windows nil)
 
 (global-display-line-numbers-mode)
 
@@ -73,7 +73,7 @@
 (defvar my/find-file-previous-directory nil
   "Variable to store the previous working directory.")
 (defun my/find-file-from-home-directory ()
-  "Set the current directory to DIRECTORY and call 'find-file, then restore."
+  "Set the current directory to DIRECTORY and call find-file, then restore."
   (interactive)
   (setq my/find-file-previous-directory default-directory)
   (cd "~/")
@@ -86,9 +86,13 @@
 (global-set-key (kbd "C-z") 'ace-window)
 (setq aw-keys '(?x ?d ?f ?v ?n ?j ?k ?l))
 (setq display-buffer-alist
-      '(("\\*Treemacs-Scoped"
+      '(("*Warnings*"
+         (display-buffer-no-window))
+        ("\\*Treemacs-Scoped"
          (display-buffer-in-side-window)
          (window-width . 75))
+        ("\\*Edit Formulas\\*"
+         (display-buffer-below-selected))
         (".*"
          (display-buffer-same-window))))
 (defadvice pop-to-buffer (before cancel-other-window first)
@@ -154,7 +158,6 @@
 (use-package cider :ensure t)
 (use-package cider-eval-sexp-fu :ensure t)
 (setq cider-repl-pop-to-buffer-on-connect nil)
-(use-package flycheck-clj-kondo :ensure t)
 (add-to-list 'load-path "/home/kwonryul/.emacs.d/cider-storm")
 (require 'cider-storm)
 (add-to-list 'cider-jack-in-nrepl-middlewares "flow-storm.nrepl.middleware/wrap-flow-storm")
@@ -162,20 +165,20 @@
 
 ;; Java
 (use-package lsp-java :ensure t)
-(setq lsp-java-server-install-dir "/home/kwonryul/.emacs.d/jdtls")
 (setq lsp-java-vmargs
       (list
        "-Xmx1G"
        "-XX:+UseG1GC"
        "-XX:-UseStringDeduplication"
        "-javaagent:/home/kwonryul/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar"))
-(setq lsp-java-configuration-runtimes '[(:name "JavaSE-11"
-                                               :path "/usr/lib/jvm/java-11-openjdk-amd64/")
-                                        (:name "JavaSE-17"
-                                               :path "/usr/lib/jvm/java-17-openjdk-amd64/")
-                                        (:name "JavaSE-21"
-                                               :path "/usr/lib/jvm/java-21-openjdk-amd64/"
+(setq lsp-java-configuration-runtimes '[(:name "JavaSE-17"
+                                               :path "/usr/lib/jvm/java-17-openjdk-amd64/"
                                                :default t)])
+(defun lsp-java-pre-init-hook ()
+  (let ((dir "/home/kwonryul/.emacs.d/workspace/.metadata/.plugins/org.eclipse.core.resources"))
+    (when (file-directory-p dir)
+      (delete-directory dir 'recursive))))
+(add-hook 'lsp-before-initialize-hook #'lsp-java-pre-init-hook)
 (add-hook 'java-mode-hook
           (lambda ()
             (setq c-basic-offset 4)
@@ -205,15 +208,8 @@
           (lambda ()
             (lsp)))
 
-;; Rust
-(use-package rustic :ensure t)
-(add-hook 'rust-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-.") 'lsp-find-implementation)
-            (local-set-key (kbd "<M-return>") 'lsp-execute-code-action)))
-
 ;; Javascript / Typescript / Vue
-(setq exec-path (append exec-path '("~/.nvm/versions/node/v20.17.0/bin")))
+(setq exec-path (append exec-path '("~/.nvm/versions/node/v20.18.0/bin")))
 (use-package typescript-mode :ensure t)
 (use-package vue-mode :ensure t)
 (defun vue-hook ()
@@ -362,6 +358,13 @@
   (interactive)
   (balance-windows))
 
+(defun investwith-github ()
+  "Cat investwith-github token to emacs clipboard."
+  (interactive)
+  (let ((output (shell-command-to-string "cat ~/tokens/investwith-github")))
+    (kill-new output)
+    (message "Copied token to clipboard")))
+
 (defun kwonryul-github ()
   "Cat kwonryul-github token to emacs clipboard."
   (interactive)
@@ -369,40 +372,10 @@
     (kill-new output)
     (message "Copied token to clipboard")))
 
-(defun ssh-utopia-lite ()
-  "Start new shell buffer and ssh connect to utopia-lite."
+(defun papercompany-ceo-github ()
+  "Cat papercompany-ceo-github token to emacs clipboard."
   (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-utopia-lite")))
-    (with-current-buffer ansi-term-buffer
-      (comint-send-string (current-buffer) "cd ~\n")
-      (comint-send-string (current-buffer) "ssh -i ~/pems/utopia.pem ubuntu@13.125.6.185\n"))))
-
-(defun ssh-utopia-lite-db ()
-  "Start new shell buffer and ssh connect to utopia-lite-db."
-  (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-utopia-lite-db")))
-    (with-current-buffer ansi-term-buffer
-      (comint-send-string (current-buffer) "cd ~\n")
-      (comint-send-string (current-buffer) "ssh -i ~/pems/utopia.pem ubuntu@43.200.115.183\n"))))
-
-(defun repl-utopia-lite ()
-  "Start utopia-lite cider repl server."
-  (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-utopia-lite")))
-    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/utopia-lite\n")
-    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
-
-(defun repl-utopia-lite-cljs ()
-  "Start utopia-lite cljs cider repl server."
-  (interactive)
-  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-utopia-lite-cljs")))
-    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/utopia-lite\n")
-    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
-
-(defun investwith-github ()
-  "Cat investwith-github token to emacs clipboard."
-  (interactive)
-  (let ((output (shell-command-to-string "cat ~/tokens/investwith-github")))
+  (let ((output (shell-command-to-string "cat ~/tokens/papercompany-ceo-github")))
     (kill-new output)
     (message "Copied token to clipboard")))
 
@@ -422,15 +395,71 @@
       (comint-send-string (current-buffer) "cd ~\n")
       (comint-send-string (current-buffer) "ssh -i ~/pems/investwith-aws-key.pem -p 11000 ec2-user@54.180.87.169\n"))))
 
+(defun ssh-love ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-love")))
+    (with-current-buffer ansi-term-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i ~/pems/utopia.pem ubuntu@52.79.54.178\n"))))
+
+(defun repl-love ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-love")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/love\n")
+    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
+
+(defun repl-love-cljs ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-love-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/love\n")
+    (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
+
+(defun ssh-utopia ()
+  "Start new shell buffer and ssh connect to utopia."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-utopia")))
+    (with-current-buffer ansi-term-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i ~/pems/utopia.pem ubuntu@43.202.120.110\n"))))
+
+(defun repl-utopia ()
+  "Start utopia cider repl server."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-utopia")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/utopia\n")
+    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
+
+(defun repl-utopia-cljs (profile)
+  "Start utopia cljs cider repl server."
+  (interactive
+   (list (completing-read "Select profile: " '("prod" "dev" "test" "debug"))))
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-utopia-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/utopia\n")
+    (comint-send-string ansi-term-buffer (concat "npx shadow-cljs watch " profile "\n"))))
+
+(defun debug-utopia-cljs ()
+  "Start utopia cljs flow-storm gui."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "debug-utopia-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/dev/clojure/utopia\n")
+    (comint-send-string ansi-term-buffer "clj -Sforce -Sdeps '{:deps {com.github.flow-storm/flow-storm-dbg {:mvn/version \"RELEASE\"}}}' -X flow-storm.debugger.main/start-debugger :port 7003 :repl-type :shadow :build-id :debug\n")))
+
+(defun utopia-tunneling ()
+  "Start utopia tunneling."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "utopia-tunneling")))
+    (comint-send-string ansi-term-buffer "cd ~\n")
+    (comint-send-string ansi-term-buffer "ssh -i ~/pems/utopia.pem ubuntu@43.202.120.110 -L 7002:localhost:7001\n")))
+
 (defun repl-GAT-X105 ()
-  "Start ferrari cider repl server."
+  "Start GAT-X105 cider repl server."
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-GAT-X105")))
     (comint-send-string ansi-term-buffer "cd ~/investwith/GAT-X105\n")
     (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
 
 (defun repl-GAT-X105-cljs ()
-  "Start ferrari cljs cider repl server."
+  "Start GAT-X105 cljs cider repl server."
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-GAT-X105-cljs")))
     (comint-send-string ansi-term-buffer "cd ~/investwith/GAT-X105\n")
@@ -443,6 +472,17 @@
     (comint-send-string ansi-term-buffer "cd ~\n")
     (comint-send-string ansi-term-buffer "ssh -i ~/pems/investwith-aws-key.pem ubuntu@3.37.234.198 -L 7002:localhost:7001\n")))
 
+(defun papercompany-orgs-export ()
+  "Export all org files in DIRECTORY to HTML and save them in the same directory."
+  (interactive)
+  (let ((directory "/home/kwonryul/dev/org/papercompany-orgs/"))
+    (dolist (org-file (directory-files-recursively directory "\\.org$"))
+      (with-current-buffer (find-file-noselect org-file)
+        (let ((output-file (concat (file-name-sans-extension org-file) ".html")))
+          (org-html-export-to-html)
+          (save-buffer)
+          (kill-buffer))))))
+
 (defun investwith-orgs-export ()
   "Export all org files in DIRECTORY to HTML and save them in the same directory."
   (interactive)
@@ -454,20 +494,19 @@
           (save-buffer)
           (kill-buffer))))))
 
-(defun investwith-orgs-export ()
-  "Export all org files in DIRECTORY to HTML and save them in the same directory."
-  (interactive)
-  (with-current-buffer (find-file-noselect "/home/kwonryul/investwith/orgs/core.org")
-    (org-html-export-to-html)
-    (save-buffer)
-    (kill-buffer)))
-
 (defun ebdb-tunneling ()
   "Start ebdb tunneling."
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "ebdb-tunneling")))
     (comint-send-string ansi-term-buffer "cd ~\n")
     (comint-send-string ansi-term-buffer "ssh -i ~/pems/as-is.pem ubuntu@15.165.231.145 -L 3307:prod.ctxlfqdbxj5n.ap-northeast-2.rds.amazonaws.com:3306\n")))
+
+(defun ebdb-dev-tunneling ()
+  "Start ebdb-dev tunneling."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ebdb-dev-tunneling")))
+    (comint-send-string ansi-term-buffer "cd ~\n")
+    (comint-send-string ansi-term-buffer "ssh -i ~/pems/as-is.pem ubuntu@15.165.231.145 -L 3307:dev-from-prod-20240109.ctxlfqdbxj5n.ap-northeast-2.rds.amazonaws.com:3306\n")))
 
 (ejc-create-connection
  "ifs"
@@ -478,7 +517,7 @@
  :password "with2327")
 
 (ejc-create-connection
- "ibs-be"
+ "ibs"
  :classpath "/home/kwonryul/.m2/repository/com/mysql/mysql-connector-j/8.1.0/mysql-connector-j-8.1.0.jar"
  :subprotocol "mysql"
  :subname "//54.180.87.169:12000/iwdb"
@@ -486,12 +525,12 @@
  :password "inwith99$$")
 
 (ejc-create-connection
- "pfdy-dev"
+ "ebdb"
  :classpath "/home/kwonryul/.m2/repository/com/mysql/mysql-connector-j/8.1.0/mysql-connector-j-8.1.0.jar"
  :subprotocol "mysql"
- :subname "//pfdy-dev-rds.cld2apqurd6s.ap-northeast-2.rds.amazonaws.com:3306/NWRN"
- :user "nwrn"
- :password "nwrnadmin2019")
+ :subname "//localhost:3307/ebdb"
+ :user "admin"
+ :password "investwith")
 
 (use-package zenburn-theme :ensure t)
 

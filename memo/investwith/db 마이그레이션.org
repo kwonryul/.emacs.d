@@ -1,0 +1,101 @@
+* 고객
+** 고객 분류
+관심 / 계약 \\
+현재 모든 고객을 계약 고객으로 가정함
+** 고객 등급
+VIP / Gold / Silver / Bronze \\
+현재 고객 등급이라는 항목이 따로 존재하지 않는것으로 보임 => 일단 모두다 Bronze 등급으로 통일함
+** 가족구성원 여부
+단일 / 대표 / 구성원 \\
+as-is에서 제대로 기록하고 있지 않는것 같음 => 일단 모두 다 단일로 통일함
+
+* 계약
+
+contract 에서 먼저 가져 온 후,
+contract_change 로 덮어쓴다
+
+
+SELECT * FROM contracts ORDER BY date
+
+| CONTT_CD             | 계약 코드 | contracts                    | fund_id                                           | IW0000                               |                            |                      |      |              |
+| CONTT_SN             | -       | GEN                          | 같은 계약에 대해 max + 1 로 하고 나중에 수동으로 번호 변경 |                                      |                            |                      |      |              |
+| CSTMR_NO             | 고객 NO  | contracts                    | fund_id                                           | funds                                | client_id                  | clients              | name | query를 돌려서 |
+| CONTT_STTS_CD        | 계약 분류 | contracts                    | type                                              | (new 10) (renewal 20) (amendment 10) |                            |                      |      |              |
+| PORTFL_NO            |         | CONST                        | 1                                                 |                                      |                            |                      |      |              |
+| CONTT_STRT_DT        |         | contracts                    | start_date                                        | Date를 string으로 파싱 후 Date로 insert |                            |                      |      |              |
+| CONTT_END_DT         |         | contracts                    | end_date                                          | Date를 string으로 파싱 후 Date로 insert |                            |                      |      |              |
+| CONTT_FILE_GRP_ID    |         | NEXTVAL(SQ_FILE_FILE_GRP_ID) | contracts                                         | s3_object_keys                       | 해당 id로 s3과 TB_FILE에 저장 | json이고 배열이니까 조심 |      |              |
+| BACC_SN              |         | contracts                    | account_id                                        | TB_CSTMR_BAAC 에서 쿼리                |                            |                      |      |              |
+| RPRT_RECV_CD         |         | contracts                    | report_delivery_method                            | (mail 20) (post 10)                  |                            |                      |      |              |
+| BASC_FEE_RT          |         | contracts                    | base_fee_rate                                     |                                      |                            |                      |      |              |
+| OUCM_FEE_RT          |         | contracts                    | performance_fee_rate                              |                                      |                            |                      |      |              |
+| BASC_CMSN_FEE_RT     |         | ??? 질문                      |                                                   |                                      |                            |                      |      |              |
+| OUCM_CMSN_FEE_RT     |         | ??? 질문                      |                                                   |                                      |                            |                      |      |              |
+| BASC_ERN_RT          |         | contracts                    | hurdle_rate                                       |                                      |                            |                      |      |              |
+| CONTT_CNCL_FEE_CD    |         | CONST                        | 1                                                 |                                      |                            |                      |      |              |
+| FEE_PYMNT_CD         |         | contracts                    | fee_collecting_method                             | (cms 10) (manual 20)                 |                            |                      |      |              |
+| CONTT_AMT            |         | contracts                    | principal                                         |                                      |                            |                      |      |              |
+| CASH_AMT             |         | 일단 0                        |                                                   |                                      |                            |                      |      |              |
+| STOCK_AMT            |         | 일단 0                        |                                                   |                                      |                            |                      |      |              |
+| BASC_FEE_AMT         |         | 일단 0                        |                                                   |                                      |                            |                      |      |              |
+| CONTT_CHG_DTTM       |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| CONTT_CHG_CASH_AMT   |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| CONTT_CHG_STOCKS_AMT |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| CONTT_CHG_PFLS_AMT   |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| RFND_FEE_AMT         |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| OUCM_FEE_AMT         |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| HLFW_CNCL_FEE_RT     |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| HLFW_CNCL_FEE_AMT    |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| DPOS_DT              |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| RMRK                 |         | 일단 비워둔다                   |                                                   |                                      |                            |                      |      |              |
+| LAST_YN              |         | CONST                        | Y                                                  |                                      |                            |                      |      |              |
+| RGSTR_ID             |         | CONST                        | system                                            |                                      |                            |                      |      |              |
+| RGST_DTTM            |         | NOW()                        |                                                   |                                      |                            |                      |      |              |
+| UPDR_ID              |         | CONST                        | system                                            |                                      |                            |                      |      |              |
+| UPD_DTTM             |         | NOW()                        |                                                   |                                      |                            |                      |      |              |
+
+SELECT * FROM contract_changes
+ORDER BY date
+
+1. start 부터 end 사이에 들어가는 날짜가 해당하는 계약이 있는지 체크 그 중에서 Y를 가져온다. 그리고 해당 녀석은 N으로 바꾼다.
+2. 혹시 start날짜와 동일한지 체크 => (1) nil => 에러 (2) CONTT_CD false (3) CONTT_CD true
+
+
+(true 일 경우는 새로 생성이 아닌 수정)
+
+| CONTT_CD             | 계약 코드 | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_SN             | -       | GEN                           | 같은 계약에 대해 max + 1 로 하고 나중에 수동으로 변경   |                                                                                                                              |
+| CSTMR_NO             | 고객 NO  | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_STTS_CD        | 계약 분류 | [true/false contract_changes] | [- type]                                        | ([true termination] 에러) ([true change] 가만히 놔두기) ([false termination] 90) ([false change] total_change에 따라 >0 40 <0 50) |
+| PORTFL_NO            |         | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_STRT_DT        |         | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_END_DT         |         | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_FILE_GRP_ID    |         | CONTT                         | 복사                                             |                                                                                                                              |
+| BACC_SN              |         | CONTT                         | 복사                                             |                                                                                                                              |
+| RPRT_RECV_CD         |         | CONTT                         | 복사                                             |                                                                                                                              |
+| BASC_FEE_RT          |         | CONTT                         | 복사                                             |                                                                                                                              |
+| OUCM_FEE_RT          |         | CONTT                         | 복사                                             |                                                                                                                              |
+| BASC_CMSN_FEE_RT     |         | ??? 질문                       |                                                 |                                                                                                                              |
+| OUCM_CMSN_FEE_RT     |         | ??? 질문                       |                                                 |                                                                                                                              |
+| BASC_ERN_RT          |         | CONTT                         | 복사                                             |                                                                                                                              |
+| CONTT_CNCL_FEE_CD    |         | CONST                         | 복사                                             |                                                                                                                              |
+| FEE_PYMNT_CD         |         | contract_changes              | fee_collecting_method                           | (cms 10) (manual 20)                                                                                                         |
+| CONTT_AMT            |         | CALC                          | (+ CONTT.CONTT_AMT principal_change)            |                                                                                                                              |
+| CASH_AMT             |         | CALC                          | (+ CONTT.CASH_AMT cash_change)                  |                                                                                                                              |
+| STOCK_AMT            |         | CALC                          | (+ CONTT.CASH_AMT asset_change로부터 계산)        |                                                                                                                              |
+| BASC_FEE_AMT         |         | CALC                          | (+ CONTT.BASC_FEE_AMT base_fee)                 |                                                                                                                              |
+| CONTT_CHG_DTTM       |         | CALC                          | date                                            |                                                                                                                              |
+| CONTT_CHG_CASH_AMT   |         | CALC                          | cash_change                                     |                                                                                                                              |
+| CONTT_CHG_STOCKS_AMT |         | CALC                          | asset_change로부터 계산                           |                                                                                                                              |
+| CONTT_CHG_PFLS_AMT   |         | CALC                          | base_fee * 100 ???                              |                                                                                                                              |
+| RFND_FEE_AMT         |         | CALC                          | - base_fee                                      |                                                                                                                              |
+| OUCM_FEE_AMT         |         | contract_changes              | performance_fee                                 |                                                                                                                              |
+| HLFW_CNCL_FEE_RT     |         | CALC                          | (/ performance_fee CONTT_CHG_PFLS_AMT) => round |                                                                                                                              |
+| HLFW_CNCL_FEE_AMT    |         | contract_changes              | early_termination_fee                           |                                                                                                                              |
+| DPOS_DT              |         | contract_changes              | payment_date                                    |                                                                                                                              |
+| RMRK                 |         | contract_changes              | remarks                                         |                                                                                                                              |
+| LAST_YN              |         | CONST                         | Y                                               |                                                                                                                              |
+| RGSTR_ID             |         | CONST                         | system                                          |                                                                                                                              |
+| RGST_DTTM            |         | NOW()                         |                                                 |                                                                                                                              |
+| UPDR_ID              |         | CONST                         | system                                          |                                                                                                                              |
+| UPD_DTTM             |         | NOW()                         |                                                 |                                                                                                                              |

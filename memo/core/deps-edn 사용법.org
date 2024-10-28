@@ -1,0 +1,20 @@
+* T
+** tools 리스트 보기
+clojure -Ttools list
+
+** 설치 예시
+clojure -Ttools install-latest :lib com.github.seancorfield/clj-new :as clj-new
+
+** 사용 예시
+clojure -Tclj-new create :template io.github.kit-clj :name kit/guestbook
+
+** 삭제 예시
+clojure -Ttools remove :tool clj-new
+
+** 설명
+-T가 -X와 다른점은, Tool은 deps.edn 에서 alias로 설정하는것이고
+-X는 내부의 임의의 함수를 호출이 가능하다
+
+* X
+* M
+* S

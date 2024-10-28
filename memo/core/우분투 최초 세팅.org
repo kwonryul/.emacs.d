@@ -1,0 +1,30 @@
+* Settings 에서 기본 설정
+* 한글 설정
+1. Settings 의 Language Support에서 Korean 다운로드
+2. sudo apt upgrade ibus-hangul
+3. ibus-setup에서 install Korean(한글)
+4. Settings - Keyboard - Input Source: Korean(한글) 설정
+5. Preference 에서 한영변환 설정
+* dconf-editor 설정
+- sudo apt install dconf-editor
+- org/gnome/desktop/wm/keybindings
+- org/gnome/desktop/input-sources
+- org/gnome/shell/keybindings
+- org/gnome/shell/extensions/dash-to-dock
+- dash-to-dock 에서 Super-Q 도 끄는거 놓칠 수도 있음
+* Emacs 언어별 설정
+- Haskell: 공식 홈페이지
+- Java
+  - sudo apt로 openjdk 받고 JAVA_HOME 등록하기
+  - jdtls도 snapshot을 따로 다운로드 받아야함
+- Clojure: 공식 홈페이지
+- Python: sudo snap install pylsp
+- C
+  - sudo apt install clangd
+  - CMAKE
+- C++: sudo apt install libstdc++-XX-dev
+- JavaScript / TypeScript
+  - nvm을 통해서 node 와 npm 버전관리
+  - npm install -g @vue/language-server
+- JSON: npm install -g vscode-langservers-extracted
+

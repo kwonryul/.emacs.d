@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org-docs-options
+# key: odo
+# --
+#+OPTIONS: ^:{} H:0 num:0

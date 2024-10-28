@@ -1,5 +1,7 @@
 .cache
 auto-save-list
+cider-storm
+eln-cache
 eclipse.jdt.ls
 elpa
 elpy
@@ -14,4 +16,5 @@ workspace
 projectile-bookmarks.eld
 projectile.cache
 session*
-images
+tramp
+init.elc

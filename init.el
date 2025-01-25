@@ -24,6 +24,10 @@
     (advice-remove 'y-or-n-p #'return-nil)
     res))
 
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message "# This buffer is for text that is not saved.\n#+OPTIONS: ^:{} toc:nil num:0\n\n")
+(global-set-key (kbd "C-c C-<return>") 'scratch-buffer)
+
 (defvar my-ansi-term-shell "/bin/bash")
 (defadvice ansi-term (before force-bash)
   (interactive (list my-ansi-term-shell)))
@@ -129,9 +133,6 @@
 (use-package yasnippet :ensure t :config (yas-global-mode))
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (setq yas-indent-line 'fixed)
-(global-set-key (kbd "C-c s") 'yas-expand)
-(global-set-key (kbd "C-c p") 'yas-prev-field)
-(global-set-key (kbd "C-c n") 'yas-next-field)
 
 ;; Haskell
 (use-package haskell-mode :ensure t)
@@ -160,14 +161,14 @@
 (setq cider-repl-pop-to-buffer-on-connect nil)
 (add-to-list 'load-path "/home/kwonryul/.emacs.d/cider-storm")
 (require 'cider-storm)
-(add-to-list 'cider-jack-in-nrepl-middlewares "flow-storm.nrepl.middleware/wrap-flow-storm")
 (define-key cider-mode-map (kbd "C-c C-v") 'cider-storm-map)
 
 ;; Java
 (use-package lsp-java :ensure t)
 (setq lsp-java-vmargs
       (list
-       "-Xmx1G"
+       "-Xmx32G"
+       "-Xms16G"
        "-XX:+UseG1GC"
        "-XX:-UseStringDeduplication"
        "-javaagent:/home/kwonryul/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar"))
@@ -225,6 +226,9 @@
 ;; JSON
 (use-package json-mode :ensure t)
 
+;; YAML
+(use-package yaml-mode :ensure t)
+
 (advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
 
 (setq projectile-track-known-projects-automatically nil)
@@ -260,10 +264,10 @@
                   (org-level-2 . 1.1)
                   (org-level-3 . 1.05)
                   (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))))
+                  (org-level-5 . 1.0)
+                  (org-level-6 . 1.0)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))))
 
 (use-package org
   :ensure t
@@ -379,6 +383,12 @@
     (kill-new output)
     (message "Copied token to clipboard")))
 
+(defun debug-clj ()
+  "Start flow-storm gui."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "debug-clj")))
+    (comint-send-string ansi-term-buffer "clj -Sforce -Sdeps '{:deps {com.github.flow-storm/flow-storm-dbg {:mvn/version \"RELEASE\"}}}'\n")))
+
 (defun ssh-ifs ()
   "Start new shell buffer and ssh connect to ifs."
   (interactive)
@@ -387,13 +397,47 @@
       (comint-send-string (current-buffer) "cd ~\n")
       (comint-send-string (current-buffer) "ssh -i ~/pems/investwith-aws-key.pem ubuntu@3.37.234.198\n"))))
 
+(defun repl-ifs ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-ifs")))
+    (comint-send-string ansi-term-buffer "cd ~/investwith/ifs-fe\n")
+    (comint-send-string ansi-term-buffer "clj -M:dev:cider\n")))
+
+(defun repl-ifs-cljs (profile)
+  (interactive
+   (list (completing-read "Select profile: " '("prod" "dev" "test" "debug"))))
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-ifs-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/investwith/ifs-fe\n")
+    (comint-send-string ansi-term-buffer (concat "npx shadow-cljs watch " profile "\n"))))
+
+(defun ifs-tunneling ()
+  "Start ifs tunneling."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ifs-tunneling")))
+    (comint-send-string ansi-term-buffer "cd ~\n")
+    (comint-send-string ansi-term-buffer "ssh -i ~/pems/investwith-aws-key.pem ubuntu@3.37.234.198 -L 7002:localhost:7001\n")))
+
+(defun debug-ifs-cljs ()
+  "Start ifs cljs flow-storm gui."
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "debug-ifs-cljs")))
+    (comint-send-string ansi-term-buffer "cd ~/investwith/ifs\n")
+    (comint-send-string ansi-term-buffer "clj -Sforce -Sdeps '{:deps {com.github.flow-storm/flow-storm-dbg {:mvn/version \"RELEASE\"}}}' -X flow-storm.debugger.main/start-debugger :port 7003 :repl-type :shadow :build-id :debug\n")))
+
+(defun ssh-ibs-prod ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-ibs-prod")))
+    (with-current-buffer ansi-term-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i ~/pems/investwith-aws-key.pem ubuntu@3.38.82.91\n"))))
+
 (defun ssh-ibs-be ()
   "Start new shell buffer and ssh connect to ibs-be."
   (interactive)
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-ibs-be")))
     (with-current-buffer ansi-term-buffer
       (comint-send-string (current-buffer) "cd ~\n")
-      (comint-send-string (current-buffer) "ssh -i ~/pems/investwith-aws-key.pem -p 11000 ec2-user@54.180.87.169\n"))))
+      (comint-send-string (current-buffer) "ssh -i ~/pems/investwith-aws-key.pem -p 11000 ec2-user@3.39.98.223\n"))))
 
 (defun ssh-love ()
   (interactive)
@@ -413,6 +457,13 @@
   (let ((ansi-term-buffer (ansi-term "/bin/bash" "repl-love-cljs")))
     (comint-send-string ansi-term-buffer "cd ~/dev/clojure/love\n")
     (comint-send-string ansi-term-buffer "npx shadow-cljs watch app\n")))
+
+(defun ssh-papercompany ()
+  (interactive)
+  (let ((ansi-term-buffer (ansi-term "/bin/bash" "ssh-papercompany")))
+    (with-current-buffer ansi-term-buffer
+      (comint-send-string (current-buffer) "cd ~\n")
+      (comint-send-string (current-buffer) "ssh -i ~/pems/papercompany.pem ubuntu@13.209.92.211\n"))))
 
 (defun ssh-utopia ()
   "Start new shell buffer and ssh connect to utopia."
@@ -546,7 +597,7 @@
    '("f079ef5189f9738cf5a2b4507bcaf83138ad22d9c9e32a537d61c9aae25502ef" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(cider-storm flycheck-clj-kondo typescript lsp-pyright typescript-mode htmlize ejc-sql ob-clojure-literate ob-clojure json-mode restclient lsp-haskell js2-mode j2-mode gnu-elpa-keyring-update rustic haskell-mode elpy zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
+   '(yaml-mode cider-storm flycheck-clj-kondo typescript lsp-pyright typescript-mode htmlize ejc-sql ob-clojure-literate ob-clojure json-mode restclient lsp-haskell js2-mode j2-mode gnu-elpa-keyring-update rustic haskell-mode elpy zenburn-theme cmake-mode yasnippet which-key use-package treemacs-projectile ripgrep rainbow-delimiters professional-theme paredit magit lsp-ui lsp-java helm-lsp flycheck eink-theme company cloud-theme cider-eval-sexp-fu cider auto-compile))
  '(rainbow-delimiters-max-face-count 8))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

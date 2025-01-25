@@ -2,4 +2,4 @@
 # name: org-docs-options
 # key: odo
 # --
-#+OPTIONS: ^:{} H:0 num:0
+#+OPTIONS: ^:{} toc:nil num:0

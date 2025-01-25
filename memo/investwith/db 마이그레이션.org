@@ -1,3 +1,5 @@
+#+OPTIONS: ^:{} H:0 num:0
+
 * 고객
 ** 고객 분류
 관심 / 계약 \\
@@ -99,3 +101,61 @@ ORDER BY date
 | RGST_DTTM            |         | NOW()                         |                                                 |                                                                                                                              |
 | UPDR_ID              |         | CONST                         | system                                          |                                                                                                                              |
 | UPD_DTTM             |         | NOW()                         |                                                 |                                                                                                                              |
+
+
+* 거래내역
+| 이름         | 체결내역                 | 수수료                        | 입출금                               | 입출고                          | buy-manual(1) | manual(2)     |
+| TRSC_SN     | 생성                    | 생성                         | 생성                                | 생성                           | 생성           | 생성           |
+| TRSC_DTTM   | trade_date, trade_time | trade_date                  | trade_date                         | trade_date                    | trade_date    | trade_date    |
+| CONTT_CD    | account_id 로 내부로직   | ''                          | ''                                 | ''                            | ''            | ''            |
+| CONTT_SN    | account_id 로 내부로직   | ''                          | ''                                 | ''                            | ''            | ''            |
+| BACC_NO     | account_id             | account_id                  | account_id                         | account_id                    | account_id    | account_id    |
+| TRSC_FL     | type buy/sell 10/20    | type buy_fee/sell_fee 10/20 | type cash_in/cash_out 50/60        | type asset_in/asset_out 30/40 | type buy/sell | type buy/sell |
+| ISIN_CD     | asset_id               | asset_id                    |                                    | asset_id                      |               |               |
+| TRSC_QTY    | quantity               | NULL                        | NULL                               | quantity                      |               |               |
+| TRSC_UNP    | price                  | NULL (찾아서 넣어줄수는 있다)   | 1 (환율을 고려하게 될수도 있어 1로 상정) | price                         |               |               |
+| TRSC_FEE    | NULL                   | quntity                     |                                    |                               |               |               |
+| TRSC_TAX    |                        |                             |                                    |                               |               |               |
+| PYMNT_AMT   |                        |                             |                                    |                               |               |               |
+| KSD_NO      |                        |                             |                                    |                               |               |               |
+| PIPO_AMT    |                        |                             |                                    |                               |               |               |
+| SMRY        |                        |                             |                                    |                               |               |               |
+| DATA_CN     |                        |                             |                                    |                               |               |               |
+| KSD_MNGT_NO |                        |                             |                                    |                               |               |               |
+| BSL_DATA_NO |                        |                             |                                    |                               |               |               |
+| RGSTR_ID    |                        |                             |                                    |                               |               |               |
+| RGST_DTTM   |                        |                             |                                    |                               |               |               |
+| UPDR_ID     |                        |                             |                                    |                               |               |               |
+| UPD_DTTM    |                        |                             |                                    |                               |               |               |
+
+* 거래내역
+
+---------------- 이 항목들은 type * manual 로 구분. 단 주의사항은 type = buy/sell & manual = 1 인 경우에는 체결내역 (수동) 항목과 수수료 (수동) 항목을 각각 한개씩 총 두개 생성함
+
+| 이름         | 체결내역                 | 체결내역 (수동)         | 수수료                        | 수수료 (수동)          | 입출금                               | 입출금 (수동)                   | 입출고                            | 입출고 (수동)                     |
+|-------------+------------------------+----------------------+-----------------------------+----------------------+------------------------------------+-------------------------------+---------------------------------+---------------------------------|
+| TRSC_SN     | 생성                    | 생성                  | 생성                         | 생성                  | 생성                                | 생성                           | 생성                             | 생성                             |
+| TRSC_DTTM   | trade_date, trade_time | trade_date           | trade_date                  | trade_date           | trade_date                         | trade_date                    | trade_date                      | trade_date                      |
+| CONTT_CD    | account_id 로 내부로직   | account_id 로 내부로직 | account_id 로 내부로직        | account_id 로 내부로직 | account_id 로 내부로직               | account_id 로 내부로직          | account_id 로 내부로직            | account_id 로 내부로직            |
+| CONTT_SN    | account_id 로 내부로직   | account_id 로 내부로직 | account_id 로 내부로직        | account_id 로 내부로직 | account_id 로 내부로직               | account_id 로 내부로직          | account_id 로 내부로직            | account_id 로 내부로직            |
+| BACC_NO     | account_id             | account_id           | account_id                  | account_id           | account_id                         | account_id                    | account_id                      | account_id                      |
+| TRSC_FL     | type buy/sell 10/20    | type buy/sell 10/20  | type buy_fee/sell_fee 10/20 | type buy/sell 10/20  | type cash_in/cash_out 50/60        | type cash_in/cash_out 50/60   | type asset_in/asset_out 30/40   | type asset_in/asset_out 30/40   |
+| ISIN_CD     | asset_id               | asset_id             | asset_id                    | asset_id             | asset_id                           | asset_id                      | asset_id                        | asset_id                        |
+| TRSC_QTY    | quantity               | quantity             | quantity                    | quantity             | NULL                               | NULL                          | quantity                        | quantity                        |
+| TRSC_UNP    | price                  | price                | NULL                        | NULL                 | 1 (환율을 고려하게 될수도 있어 1로 상정) | 1                             | NULL                            | price                           |
+| TRSC_FEE    | NULL                   | NULL                 | fee                         | fee                  | fee                                | fee                           | fee                             | fee                             |
+| TRSC_TAX    | NULl                   | NULL                 | tax                         | tax                  | tax                                | tax                           | tax                             | tax                             |
+| PYMNT_AMT   | 일단 비워둠              | 일단 비워둠            | NULL                        | NULL                 | NULL                               | NULL                          | NULL                            | NULL                            |
+| KSD_NO      | ksd_number             | NULL                 | ksd_number                  | NULL                 | ksd_number                         | NULL                          | ksd_number                      | NULL                            |
+| PIPO_AMT    | NULL                   | NULL                 | NULL                        | NULL                 | quantity                           | quantity                      | NULL                            | 일단 비워둠                       |
+| SMRY        | 체결내역                 | 체결내역               | 수수료                        | 수수료                 | type cash_in/cash_out 입금/출금      | type cash_in/cash_out 입금/출금 | type asset_in/asset_out 입고/출고 | type asset_in/asset_out 입고/출고 |
+| DATA_CN     | 일단 비워둠              | 수동                  | 일단 비워둠                   | 수동                  | 일단 비워둠                          | 수동                           | 일단 비워둠                       | 수동                             |
+| KSD_MNGT_NO | NULL                   | NULL                 | NULL                        | NULL                 | NULL                               | NULL                          | NULL                            | NULL                            |
+| BSL_DATA_NO | ksd_number             | NULL                 | ksd_number                  | NULL                 | ksd_number                         | NULL                          | ksd_number                      | NULL                            |
+| RGSTR_ID    |                        |                      |                             |                      |                                    |                               |                                 |                                 |
+| RGST_DTTM   |                        |                      |                             |                      |                                    |                               |                                 |                                 |
+| UPDR_ID     |                        |                      |                             |                      |                                    |                               |                                 |                                 |
+| UPD_DTTM    |                        |                      |                             |                      |                                    |                               |                                 |                                 |
+|             |                        |                      |                             |                      |                                    |                               |                                 |                                 |
+
+

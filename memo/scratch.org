@@ -1,34 +1,95 @@
-cljs 같은 경우 테스트와 디버깅은 따로 진행하지 않는다.
+* OS
+- Linux
+- Ubuntu
 
-repl 환경 자체를 통해 대부분 디버깅을 해결하고
+* Language
+- Clojure
+- Java
+- Javascript
+- Python
+- Shell Script
+- C
 
-테스트 같은 경우도 직접 앱을 가지고 놀면서 실행....
+* FrameWork
+** Backend
+- Clojure Open Sources
+- Java Spring
+- Python FastAPI
+** Frontend
+- ClojureScript Re-frame
+- Vue.js
 
-spec 같은 경우는
+* DB
+** DB
+- MySQL
+- PostgreSQL
+** Connector
+*** JDBC
+- HugSQL / Conman
+- JPA
+- MyBatis
 
-1. reitit 쪽에서 검증
-2. cofx 쪽에서 검증
+* DevOps
+- AWS
+- Jenkins
+- GitHub
+- Docker
+- Kubernetes
+- nginX
 
-나머지는 검증하지 않는다.
+* Build
+- deps.edn
+- shadow.cljs
+- gradle
+- npm
+- make
 
-reitit 의 검증은 형변환 때문이고
+* Git
+- git
+- github
 
-cofx 는 왜 검증하는거지?
+* REST Client
+- restclient
 
-... 좀 더 진행해보자....
+* DB Client
+- DBeaver
 
+* Security
+- TLS
+- JWT
+- OAuth2
+- Private Network
 
+* Tools
+- Emacs
+- LSP
 
-이벤트들은 테스트를 진행하고
+* Linux
+- ssh
+- scp
 
-이펙트들은 테스트를 진행하지 않는다.
-
-코이펙트는 malli schema 를 체크하고
-
-reitit에서도 malli schema를 체크한다
-
-이펙트들에 대해 테스트를 진행하려면
-
-input spec
-
-cofx spec
+* Docs
+- org
+- ascii doctor
+- swagger
+  
+* 공부했지만 실무용이 아닌 것들 / 현재는 사용하지 않는 것들 / 찍먹만 해본것들
+- 컴퓨터 구조
+- 멀티코어
+- 운영체제
+- 함수형 프로그래밍
+- 네트워크
+- Haskell
+- OCaml
+- Category Theory
+- JVM
+- vs code
+- IntelliJ
+- node js
+- deno
+- 리눅스 커널 프로그래밍
+- Rust
+- Tokio
+- Ascii doctor
+- mock mvc
+- CUDA

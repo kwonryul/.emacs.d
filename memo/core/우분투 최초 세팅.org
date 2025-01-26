@@ -41,7 +41,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - Haskell: 공식 홈페이지
 - Java
   - sudo apt로 openjdk 받고 JAVA_HOME 등록하기
-  - jdtls도 snapshot을 따로 다운로드 받아야함
+  - jdtls는 emacs에서 자동선택으로 팝업으로 다운로드하기
 - Clojure: 공식 홈페이지
 - Python: sudo snap install pylsp
 - C
@@ -50,5 +50,9 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - C++: sudo apt install libstdc++-XX-dev
 - JavaScript / TypeScript
   - nvm을 통해서 node 와 npm 버전관리
+  - node 버전 명시
+  - 해당 버전에 대해 use 를 꼭 해주기 (그래야 node 명령어 활성화)
   - npm install -g @vue/language-server
+  - sudo ln -s "$(which node)" /usr/bin/node
+  - sudo ln -s "$(which npm)" /usr/bin/npm
 - JSON: npm install -g vscode-langservers-extracted

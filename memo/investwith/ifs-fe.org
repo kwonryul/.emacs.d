@@ -1,0 +1,5 @@
+#+OPTIONS: ^:{} toc:nil num:0
+
+- yarn 활성화: corepack enable yarn
+- 의존성 설치: yarn
+- 로컬환경 시작: yarn local

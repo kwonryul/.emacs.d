@@ -1,10 +1,28 @@
+#+OPTIONS: ^:{} toc:nil num:0
+
+* 여기에 도달하기 까지
+1. sudo apt update
+3. apt에서 emacs 설치
+4. git으로 .emacs.d 옮겨오기
+5. cider-storm 설치
+6. 우분투 최초 세팅 열람
 * Settings 에서 기본 설정
+1. Ubuntu Desktop
+2. Multitasking
+3. Power
+4. Keyboard => Keyboard Shortcuts (나머지는 나중에 더 손보지만)
 * 한글 설정
-1. Settings 의 Language Support에서 Korean 다운로드
+1. Settings의 System => Region & Language => Manage Installed Languages에서 Korean 다운로드
 2. sudo apt upgrade ibus-hangul
-3. ibus-setup에서 install Korean(한글)
+3. 컴퓨터 재시작
 4. Settings - Keyboard - Input Source: Korean(한글) 설정
 5. Preference 에서 한영변환 설정
+* emacs Hangul
+vim ~/.Xresources
+Emacs*useXIM: false
+;; 재시작 해야 반영됨
+* gnome-tweaks
+전부 다 보기
 * dconf-editor 설정
 - sudo apt install dconf-editor
 - org/gnome/desktop/wm/keybindings
@@ -12,6 +30,13 @@
 - org/gnome/shell/keybindings
 - org/gnome/shell/extensions/dash-to-dock
 - dash-to-dock 에서 Super-Q 도 끄는거 놓칠 수도 있음
+* pems / tokens 를 usb로부터 전달받기
+* dbeaver 랑 google chrome 은 deb를 직접 다운 받아야함
+dbeaver: 공식 홈페이지
+chrome:
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+* 주의: chromium snap 버전이 있다면 삭제하기. snap 버전은 /tmp/org-export에 접근 불가능함.
+그렇기 때문에 chrome은 dpkg를 통해 설치하는 것이고, 이것을 통해서 org-html 미리보기를 수행하는 것
 * Emacs 언어별 설정
 - Haskell: 공식 홈페이지
 - Java
@@ -27,4 +52,3 @@
   - nvm을 통해서 node 와 npm 버전관리
   - npm install -g @vue/language-server
 - JSON: npm install -g vscode-langservers-extracted
-

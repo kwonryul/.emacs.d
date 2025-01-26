@@ -171,7 +171,7 @@
        "-Xms16G"
        "-XX:+UseG1GC"
        "-XX:-UseStringDeduplication"
-       "-javaagent:/home/kwonryul/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar"))
+       "-javaagent:/home/kwonryul/.emacs.d/lombok/lombok-1.18.32.jar"))
 (setq lsp-java-configuration-runtimes '[(:name "JavaSE-17"
                                                :path "/usr/lib/jvm/java-17-openjdk-amd64/"
                                                :default t)])

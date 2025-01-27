@@ -56,3 +56,9 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo ln -s "$(which node)" /usr/bin/node
   - sudo ln -s "$(which npm)" /usr/bin/npm
 - JSON: npm install -g vscode-langservers-extracted
+* Libre Office
+sudo apt install libreoffice
+* Obs Studio
+공식 홈페이지에 가서 repository 추가 후 apt 로 설치
+* Docker
+레포지토리 추가 후 apt로 설치
